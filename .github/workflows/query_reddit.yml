@@ -1,8 +1,8 @@
 name: query_reddit
 on:
-  workflow_dispatch:
-  # schedule:
-  #   - cron: '20 15 * * *'
+  # workflow_dispatch:
+  schedule:
+    - cron: '54 15 * * *'
 
 jobs:
   query_reddit:
