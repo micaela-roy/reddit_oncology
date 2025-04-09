@@ -18,7 +18,7 @@ jobs:
         uses: mamba-org/setup-micromamba@v1
         with:
           cache-environment: true
-          environment-file: glacier_image_correlation/environment.yml
+          environment-file: environment.yml
 
       - name: Query reddit for posts
         id: query_reddit
