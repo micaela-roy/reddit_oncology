@@ -5,5 +5,4 @@ channels:
 dependencies:
     - praw
     - pandas
-    - datetime
     - tqdm
