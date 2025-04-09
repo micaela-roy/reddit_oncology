@@ -1,0 +1,31 @@
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '20 15 * * *'
+
+jobs:
+  query_reddit:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Conda environment with Micromamba
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          cache-environment: true
+          environment-file: glacier_image_correlation/environment.yml
+
+      - name: Query reddit for posts
+        id: query_reddit
+        run: | 
+          python scripts/query_reddit.py
+
+      - name: Upload to GitHub repo
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+            commit_message: Commit to Github
+            file_pattern: 'data/reddit_posts.csv'
